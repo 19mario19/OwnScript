@@ -1,0 +1,4 @@
+type Foo = Result::Ok(number)
+
+type Bar = Result::Ok(string)
+

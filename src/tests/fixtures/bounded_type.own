@@ -1,0 +1,3 @@
+fn add<T: Add>(left: T, right: T) -> T {
+    return left
+}

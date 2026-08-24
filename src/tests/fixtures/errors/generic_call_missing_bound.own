@@ -1,0 +1,13 @@
+struct User {
+    name: string
+}
+
+fn foo<T: Add + Clone, U>(bar: T, buz: U) {}
+
+let user = User {
+    name: "Mario"
+}
+
+let constant = 22
+
+foo(user, constant)

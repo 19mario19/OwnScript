@@ -1,0 +1,6 @@
+struct Foo {
+    bar: number,
+    mut buz: string
+}
+let mut foo: Foo = Foo { bar: 1, buz: "hello" }
+foo.bar = 2

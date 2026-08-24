@@ -1,0 +1,6 @@
+type Result<T, E> = Ok(T) | Err(E)
+type Option<T> = Some(T) | None
+
+fn getValue() -> Result<number, string> {
+    return Option::Some(42)
+}

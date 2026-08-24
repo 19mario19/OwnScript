@@ -1,0 +1,3 @@
+fn foo<T: Add + Clone, U>(bar: T, buz: U) {}
+
+foo(123, 22)

@@ -1,0 +1,3 @@
+fn print<T: Clone + Display>(value: T) -> T {
+    return value
+}

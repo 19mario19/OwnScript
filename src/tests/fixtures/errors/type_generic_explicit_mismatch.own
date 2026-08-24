@@ -1,0 +1,6 @@
+fn makePair<T, U>(a: T, b: U) {
+}
+
+fn main() {
+    makePair::<number, string>(42, 42)
+}

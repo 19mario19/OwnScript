@@ -1,0 +1,2 @@
+use std::http
+let data <- http::Client::get("https://api.example.com")

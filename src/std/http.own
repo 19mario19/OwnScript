@@ -1,0 +1,28 @@
+pub struct Client {}
+
+impl Client{
+    fn new(){
+        return Client{}
+    }
+    async fn get(&URL: string){
+    return async unsafe {
+            let res = await fetch(URL)
+            let json = await res.json()
+            return json
+        }
+        
+    }
+    async fn post(&URL: string, &body){
+        return async unsafe {
+            let res = await fetch(URL, 
+            {
+                method: "POST",
+                body: JSON.stringify(body)
+                }
+            )
+            let json = await res.json()
+            return json
+        }
+    }
+}
+

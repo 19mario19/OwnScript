@@ -1,0 +1,4 @@
+
+fn identity<T: Clone>(value: T) -> T {
+    return value
+}

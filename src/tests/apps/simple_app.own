@@ -1,0 +1,31 @@
+type Result<T, E> = Ok(T) | Err(E)
+type Command = Add(number, number) | Quit
+
+fn execute(command: Command) -> Result<number, string> {
+   let result = match command {
+        Command::Add(a, b) => {
+            return Result::Ok(a + b)
+        }
+        Command::Quit => {
+            return Result::Err("quit")
+        }
+    }
+
+    return result
+}
+
+fn main() {
+    let command = Command::Add(10, 20)
+    let result = match execute(command) {
+        Result::Ok(value) => {
+            return value
+        }
+        Result::Err(message) => {
+            return 0
+        }
+    }
+
+    
+}
+
+main()

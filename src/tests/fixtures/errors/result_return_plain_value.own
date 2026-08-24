@@ -1,0 +1,5 @@
+type Result<T, E> = Ok(T) | Err(E)
+
+fn bad() -> Result<number, string> {
+    return 42
+}

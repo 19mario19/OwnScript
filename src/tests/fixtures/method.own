@@ -1,0 +1,7 @@
+struct Counter {}
+
+impl Counter {
+    fn value(&self) -> number {
+        return 0
+    }
+}

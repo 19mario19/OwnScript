@@ -1,0 +1,3 @@
+fn swap<A, B>(first: A, second: B) -> A {
+    return first
+}

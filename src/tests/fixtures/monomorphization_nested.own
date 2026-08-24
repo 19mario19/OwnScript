@@ -1,0 +1,9 @@
+fn foo<T>(&value: T) -> T {
+    return value
+}
+
+fn bar<T>(&value: T) -> T {
+    return value
+}
+
+foo(bar(2))

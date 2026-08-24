@@ -1,0 +1,7 @@
+struct User {
+    name: string
+}
+
+fn add_users(a: User, b: User) -> User {
+    return a + b
+}

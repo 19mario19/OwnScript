@@ -1,0 +1,4 @@
+fn clone_value<T: Clone>(value: T) -> T {
+    return value.clone()
+}
+

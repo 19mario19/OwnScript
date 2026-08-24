@@ -1,0 +1,14 @@
+type Option<T> = Some(T) | None
+
+fn getValue() -> Option<number> {
+    return Option::Some(42)
+}
+
+let result = match getValue() {
+    Option::Some(x) => {
+        return x
+    }
+    Option::None => {
+        return 0
+    }
+}

@@ -1,0 +1,7 @@
+fn combine<T: Clone + Display, U: Eq , V>(
+    first: T,
+    second: U,
+    third: V,
+) -> T {
+    return first
+}

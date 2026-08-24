@@ -1,0 +1,3 @@
+fn identity<T: NotATrait>(value: T) -> T {
+    return value
+}

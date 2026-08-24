@@ -1,0 +1,5 @@
+fn foo(&mut bar: number) -> number {
+    return bar
+}
+let mut a: number = 2
+foo(&a)

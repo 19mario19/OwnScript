@@ -1,0 +1,7 @@
+type Pair<A, B> = PairValue(A, B)
+
+fn makePair<T, U>(a: T, b: U) -> Pair<T, U> {
+    return PairValue(a, b)
+}
+
+let result = makePair::<number, string>(42, 42)

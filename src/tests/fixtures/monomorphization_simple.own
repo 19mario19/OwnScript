@@ -1,0 +1,4 @@
+fn foo<T,U>(&value: T, &buz: number, &bam: U) -> T{}
+
+foo("bar", 22, "qux")
+
