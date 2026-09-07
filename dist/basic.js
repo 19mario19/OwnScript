@@ -3,4 +3,4 @@ function add(a, b) {
 
 return a + b
 }
-let result = add(1,2)
+let result = add(1, 2)

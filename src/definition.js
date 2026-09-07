@@ -14,7 +14,12 @@ function define(ctx, array, prefix = []) {
   for (let node of array) {
     switch (node.kind) {
       case ASTType.FunctionDeclaration: {
-        table.register([node.name], { kind: SymbolKind.FUNCTION, node }, prefix)
+        const [foo, ...rest] = prefix // JUST A TEST
+        log("function : ", prefix, node.name)
+        table.register([node.name], { kind: SymbolKind.FUNCTION, node }, rest)
+        // table.register([node.name], { kind: SymbolKind.FUNCTION, node }, prefix)
+
+        table.debug()
         break
       }
 
@@ -80,18 +85,50 @@ function define(ctx, array, prefix = []) {
 function defineLocal(ctx, ast) {
   define(ctx, ast.body)
 }
+
+function exportMatchesSymbol(node, symbol) {
+  if (node.kind === ASTType.StructDeclaration) {
+    return node.path[0] === symbol
+  }
+
+  if (node.kind === ASTType.ImplBlock) {
+    return node.name === symbol
+  }
+
+  return node.name === symbol
+}
+
 function defineImport(ctx, ast) {
   for (let imp of ast.imports) {
     let [first, ...rest] = imp.path
 
-    const exports = imp.module.exports.map((v) => {
+    let exports = imp.module.exports || []
+    const requested = new Set(imp.symbols)
+
+    let prefix
+    if (imp.symbols && imp.symbols.length > 0) {
+      prefix = imp.symbols.length > 0 ? [] : rest
+      exports = exports.filter((node) =>
+        imp.symbols.some((symbol) => exportMatchesSymbol(node, symbol)),
+      )
+      for (const symbol of requested) {
+        const found = exports.some((node) => exportMatchesSymbol(node, symbol))
+
+        if (!found) {
+          throw new Error(`${imp.path.join("::")} does not export ${symbol}.`)
+        }
+      }
+    }
+
+    exports = exports.map((v) => {
       if (v.methods) {
         v.methods = v.methods.map((p) => ({ ...p, imported: true }))
       }
+
       return { ...v, imported: true }
     })
 
-    define(ctx, exports, rest)
+    define(ctx, exports, prefix)
   }
 }
 
@@ -108,6 +145,7 @@ function definitionPass(ast) {
   defineImport(ctx, ast)
   defineLocal(ctx, ast)
   // ctx.types.debug()
+  // ctx.table.debug()
 
   return ctx
 }

@@ -30,6 +30,8 @@ function getReturnType(symbol) {
 function resolveNode(ctx, node) {
   if (!node) return
 
+  // log.stringify(node)
+
   const { table: symbols, scope } = ctx
   // log("NODE: ", node)
   switch (node.kind) {

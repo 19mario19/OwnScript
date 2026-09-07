@@ -1010,18 +1010,14 @@ function parser(tokens, source) {
   }
 
   function resolvePath(path = []) {
-    let name = eat(TokenType.IDENT).value
-    path = [...path, name]
-    if (peek().type === TokenType.COLON_COLON) {
+    path.push(eat(TokenType.IDENT).value)
+
+    while (peek().type === TokenType.COLON_COLON) {
       eat(TokenType.COLON_COLON)
-      if (peek(1)?.type && peek(1).type === TokenType.COLON_COLON) {
-        resolvePath(path)
-      }
-      if (peek().type === TokenType.IDENT)
-        path = [...path, eat(TokenType.IDENT).value]
+      path.push(eat(TokenType.IDENT).value)
     }
 
-    let symbols = resolveSymbols()
+    const symbols = resolveSymbols()
 
     return { path, symbols }
   }
@@ -1061,6 +1057,14 @@ function parser(tokens, source) {
       argument,
     }
   }
+  function parseModDeclaration() {
+    eat(TokenType.MOD)
+
+    return {
+      kind: ASTType.ModDeclaration,
+      name: eat(TokenType.IDENT).value,
+    }
+  }
 
   const statementParsers = {
     [TokenType.LET]: parseLetDecl,
@@ -1078,6 +1082,7 @@ function parser(tokens, source) {
     [TokenType.BREAK]: parseBreakStmt,
     [TokenType.CONTINUE]: parsecContinueStmt,
     [TokenType.USE]: parseUseDeclaration,
+    [TokenType.MOD]: parseModDeclaration,
     [TokenType.PUB]: parsePubStmt,
   }
 

@@ -1,0 +1,2 @@
+pub struct Client {}
+pub struct Something {}

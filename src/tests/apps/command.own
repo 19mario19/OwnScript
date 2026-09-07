@@ -1,7 +1,6 @@
 type Result<T,E> = Ok(T) | Err(E)
 type Command = Add(number,number) | Mul(number,number) | Sub(number,number) | Div(number,number) | Quit
-
-
+`
 fn execute(&command: Command)-> Result<number, string>{
     let result = match command {
         Command::Add(a, b)=> {
@@ -28,12 +27,11 @@ fn main(){
 
     let command = Command::Add(10, 10)
 
-    let result = match execute(command) {
+    let result = match execute(&command) {
         Result::Ok(res) => {
             return res
         } 
-        Result::Err(err)=>{
-            // later will add paninc
+        Result::Err(err)=> {
             return 0
         }
     }

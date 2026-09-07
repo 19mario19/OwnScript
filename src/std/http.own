@@ -26,3 +26,6 @@ impl Client{
     }
 }
 
+pub struct Something {
+    foo: number
+}

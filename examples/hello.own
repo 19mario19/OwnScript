@@ -1,0 +1,4 @@
+use std::io::console
+
+
+console::print("Hello from OwnScript!")

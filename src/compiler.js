@@ -31,7 +31,7 @@ export function compile(source, options = {}, fileName) {
   if (options.ast) log.stringify("AST: ", ast)
 
   linker(ast)
-  // if (options.linked) log.stringify("Linked AST: ", ast)
+  if (options.linked) log.stringify("Linked AST: ", ast)
 
   let ctx = definitionPass(ast)
 

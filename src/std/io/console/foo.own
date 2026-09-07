@@ -1,0 +1,6 @@
+pub fn print(&value: string){
+    unsafe {
+        console.log("whatever")
+        console.log(value)
+    }
+}

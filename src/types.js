@@ -94,6 +94,7 @@ const TokenType = {
 
   PUB: "PUB",
   USE: "USE",
+  MOD: "MOD",
 
   EOF: "EOF",
 }
@@ -148,6 +149,7 @@ const ASTType = {
   ClosureExpression: "ClosureExpression",
   UseStatement: "UseStatement",
   PathExpression: "PathExpression",
+  ModDeclaration: "ModDeclaration",
   ExportDeclaration: "ExportDeclaration",
   TypeParameter: "TypeParameter",
   TypeReference: "TypeReference",

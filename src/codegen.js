@@ -55,15 +55,18 @@ ${stmts}
     }
 
     case ASTType.CallExpression: {
-      const args = node.args.map((arg) => codegen(arg.value)).join(",")
+      const args = node.args.map((arg) => codegen(arg.value)).join(", ")
 
+      let calleeCode = ""
       if (node.callee.kind === ASTType.Identifier) {
-        return `${node.callee.value}(${args})`
+        calleeCode = node.callee.value === "self" ? "this" : node.callee.value
       } else if (node.callee.kind === ASTType.MemberExpression) {
-        return `${codegenMember(node.callee)}(${args})`
-      } else if (node.callee.kind === ASTType.PathExpression) {
-        return `${codegen(node.callee)}(${args})`
+        calleeCode = codegenMember(node.callee)
+      } else {
+        calleeCode = codegen(node.callee)
       }
+
+      return `${calleeCode}(${args})`
     }
     case ASTType.IfStatement: {
       const condition = codegen(node.condition)
@@ -190,6 +193,7 @@ ${codegen(node.body)}
         return `(async () => { ${node.body} })()`
       }
 
+      log("node.body: ", node.body)
       return node.body
     }
 
@@ -274,6 +278,10 @@ ${codegen(node.body)}
     }
     case ASTType.BreakStatement: {
       return "break"
+    }
+    case ASTType.UseStatement: {
+      // Ignore or lower to JS module imports depending on your stdlib design
+      return ""
     }
     case ASTType.Param:
     case ASTType.Argument: {

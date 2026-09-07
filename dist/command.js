@@ -59,23 +59,20 @@ function execute(command) {
 }
 function main() {
   let command = Command.Add(10, 10)
-  let result = (() => {
-    const temp = execute(command)
-    switch (temp.tag) {
-      case "Ok": {
-        const res = temp.value[0]
-        return res
-      }
-      case "Err": {
-        const err = temp.value[0]
-        return 0
-      }
-
-      default:
-        throw new Error("Non-exhaustive match")
+  let result
+  const temp = execute(command)
+  switch (temp.tag) {
+    case "Ok": {
+      const res = temp.value[0]
+      result = res
     }
-  })()
+    case "Err": {
+      const err = temp.value[0]
+      result = 0
+    }
 
-  console.log(result)
+    default:
+      throw new Error("Non-exhaustive match")
+  }
 }
 main()

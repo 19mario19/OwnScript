@@ -38,6 +38,7 @@ const KEYWORDS = {
 
   pub: TokenType.PUB,
   use: TokenType.USE,
+  mod: TokenType.MOD,
 }
 
 const isKeyword = (word) => word in KEYWORDS

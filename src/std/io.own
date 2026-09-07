@@ -1,5 +1,0 @@
-pub fn print(&data)->void{
-    unsafe {
-        console.log(data)
-    }
-}

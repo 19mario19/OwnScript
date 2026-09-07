@@ -1,0 +1,1 @@
+pub qux(foo: string)->string{}

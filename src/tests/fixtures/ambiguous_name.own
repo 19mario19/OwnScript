@@ -1,0 +1,2 @@
+pub struct console {}
+pub mod console;
